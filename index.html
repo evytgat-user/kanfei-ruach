@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>קהילת כנפי רוח — מאגר חברי הקהילה</title>
+  <link rel="icon" type="image/png" href="https://i.toffu.ai/1ijoy2fq-png" />
+  <link rel="apple-touch-icon" href="https://i.toffu.ai/1ijoy2fq-png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      /* Deep corporate navy palette */
       --navy: #0f2d52;
       --navy-2: #14396a;
       --navy-3: #1b4b88;
@@ -17,20 +18,22 @@
       --accent-soft: #eaf2fd;
       --accent-line: #cfe0f7;
 
+      --wa: #25d366;
+      --wa-dark: #128c4b;
+
       --page-bg: #eef2f8;
       --card: #ffffff;
       --text: #1b2733;
       --muted: #74808d;
-      --zebra: #f6f9fd;
+      --zebra: #f7fafe;
       --border: #e6ecf4;
 
       --shadow-sm: 0 1px 3px rgba(15, 45, 82, 0.06);
       --shadow-md: 0 8px 28px rgba(15, 45, 82, 0.10);
-      --shadow-lg: 0 18px 50px rgba(15, 45, 82, 0.16);
+      --shadow-lg: 0 18px 50px rgba(15, 45, 82, 0.14);
     }
 
     * { box-sizing: border-box; }
-
     html, body { height: 100%; }
 
     body {
@@ -40,237 +43,190 @@
       color: var(--text);
       direction: rtl;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    /* ---------- Corporate header ---------- */
+    /* ---------- Header ---------- */
     .site-header {
       background:
         radial-gradient(1200px 320px at 50% -120px, rgba(47, 128, 237, 0.35), transparent 70%),
         linear-gradient(160deg, var(--navy-3) 0%, var(--navy-2) 45%, var(--navy) 100%);
       color: #fff;
       text-align: center;
-      padding: 40px 20px 54px;
+      padding: 42px 20px 56px;
       position: relative;
       box-shadow: var(--shadow-md);
     }
 
     .logo-badge {
-      width: 104px;
-      height: 104px;
+      width: 100px; height: 100px;
       margin: 0 auto 18px;
       border-radius: 50%;
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
-      overflow: hidden;
-      padding: 8px;
+      overflow: hidden; padding: 8px;
     }
-
-    .logo-badge img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
+    .logo-badge img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
     .site-header h1 {
       margin: 0;
-      font-size: 34px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
+      font-size: 34px; font-weight: 800; letter-spacing: 0.5px;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     }
-
     .site-header .subtitle {
-      margin: 8px 0 0;
-      font-size: 17px;
-      font-weight: 500;
-      color: #c8d8ef;
+      margin: 8px 0 0; font-size: 17px; font-weight: 500; color: #c8d8ef;
     }
 
     /* ---------- Layout ---------- */
-    .container {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 22px 60px;
-    }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 22px 60px; }
 
-    /* Tabs bar floats up over the header edge */
     .tabs {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: -28px auto 26px;
-      position: relative;
-      z-index: 2;
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      margin: -28px auto 26px; position: relative; z-index: 2;
     }
-
     .tab-btn {
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--navy-2);
-      padding: 13px 24px;
-      border-radius: 14px;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 15.5px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, color 0.16s ease;
+      background: var(--card); border: 1px solid var(--border); color: var(--navy-2);
+      padding: 13px 24px; border-radius: 14px; cursor: pointer;
+      font-family: inherit; font-size: 15.5px; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 9px;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease, color .16s ease;
       box-shadow: var(--shadow-sm);
     }
-
     .tab-btn .ico { font-size: 18px; line-height: 1; }
-
     .tab-btn:hover {
-      background: var(--accent-soft);
-      color: var(--navy);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      background: var(--accent-soft); color: var(--navy);
+      transform: translateY(-2px); box-shadow: var(--shadow-md);
     }
-
     .tab-btn.active {
       background: linear-gradient(160deg, var(--navy-3), var(--navy));
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 12px 26px rgba(15, 45, 82, 0.30);
-      transform: translateY(-2px);
+      color: #fff; border-color: transparent;
+      box-shadow: 0 12px 26px rgba(15, 45, 82, 0.30); transform: translateY(-2px);
     }
 
     /* ---------- Toolbar ---------- */
-    .toolbar {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
+    .toolbar { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }
     .search-box {
-      flex: 1;
-      min-width: 220px;
-      padding: 13px 16px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      font-family: inherit;
-      font-size: 15px;
-      background: var(--card);
-      color: var(--text);
-      box-shadow: var(--shadow-sm);
-      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+      flex: 1; min-width: 220px; padding: 13px 16px;
+      border: 1px solid var(--border); border-radius: 12px;
+      font-family: inherit; font-size: 15px; background: var(--card); color: var(--text);
+      box-shadow: var(--shadow-sm); transition: border-color .16s ease, box-shadow .16s ease;
     }
-
-    .search-box:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px var(--accent-soft);
-    }
-
+    .search-box:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
     .count-badge {
-      background: var(--accent-soft);
-      color: var(--navy-2);
-      padding: 9px 16px;
-      border-radius: 30px;
-      font-size: 13.5px;
-      font-weight: 700;
-      border: 1px solid var(--accent-line);
-      white-space: nowrap;
+      background: var(--accent-soft); color: var(--navy-2); padding: 9px 16px;
+      border-radius: 30px; font-size: 13.5px; font-weight: 700;
+      border: 1px solid var(--accent-line); white-space: nowrap;
     }
 
-    /* ---------- Card / table ---------- */
+    /* ---------- Card / sections ---------- */
     .card {
-      background: var(--card);
-      border-radius: 18px;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border);
-      overflow: hidden;
+      background: var(--card); border-radius: 18px; box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border); overflow: hidden; margin-bottom: 22px;
     }
-
-    .table-wrap { overflow-x: auto; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14.5px;
-    }
-
-    thead th {
+    .section-head {
+      display: flex; align-items: center; gap: 11px;
+      padding: 18px 22px;
       background: linear-gradient(160deg, var(--navy-3), var(--navy));
       color: #fff;
-      text-align: right;
-      padding: 16px 18px;
-      position: sticky;
-      top: 0;
-      white-space: nowrap;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 0.3px;
-      border-bottom: 3px solid var(--accent);
+    }
+    .section-head .s-ico { font-size: 22px; line-height: 1; }
+    .section-head h2 { margin: 0; font-size: 18px; font-weight: 800; letter-spacing: .3px; }
+    .section-head .s-count {
+      margin-inline-start: auto; background: rgba(255,255,255,0.16);
+      padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 700;
     }
 
+    /* ---------- Tables (no horizontal scroll) ---------- */
+    table {
+      width: 100%; border-collapse: collapse; table-layout: auto; font-size: 14.5px;
+    }
+    thead th {
+      background: #f1f6fd; color: var(--navy-2);
+      text-align: right; padding: 14px 16px;
+      font-weight: 800; font-size: 13.5px; letter-spacing: .2px;
+      border-bottom: 2px solid var(--accent-line);
+      overflow-wrap: anywhere;
+    }
+    /* When a table is the first element of a card (no section-head), darken header */
+    .card > table thead th {
+      background: linear-gradient(160deg, var(--navy-3), var(--navy));
+      color: #fff; border-bottom: 3px solid var(--accent);
+    }
     tbody td {
-      padding: 13px 18px;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
-      color: var(--text);
+      padding: 13px 16px; border-bottom: 1px solid var(--border);
+      vertical-align: middle; color: var(--text);
+      overflow-wrap: anywhere; word-break: break-word; line-height: 1.5;
     }
-
     tbody tr:nth-child(even) { background: var(--zebra); }
-
     tbody tr:hover { background: var(--accent-soft); }
-
     tbody tr:last-child td { border-bottom: none; }
 
-    .state {
-      padding: 60px 30px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 16px;
+    .name-cell { font-weight: 700; color: var(--navy); white-space: nowrap; }
+    .empty-cell { color: #c2ccd8; }
+
+    /* ---------- WhatsApp phone link ---------- */
+    .wa-link {
+      display: inline-flex; align-items: center; gap: 7px;
+      color: var(--wa-dark); text-decoration: none; font-weight: 600;
+      direction: ltr; white-space: nowrap;
+      padding: 4px 9px 4px 6px; border-radius: 9px;
+      background: rgba(37, 211, 102, 0.10); border: 1px solid rgba(37, 211, 102, 0.25);
+      transition: background .15s ease, box-shadow .15s ease, transform .15s ease;
+    }
+    .wa-link:hover {
+      background: rgba(37, 211, 102, 0.18);
+      box-shadow: 0 3px 10px rgba(18, 140, 75, 0.18); transform: translateY(-1px);
+    }
+    .wa-ico { width: 17px; height: 17px; flex: 0 0 auto; }
+
+    .badge-yes {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 24px; height: 24px; padding: 0 7px;
+      background: rgba(37, 211, 102, 0.14); color: var(--wa-dark);
+      border-radius: 7px; font-weight: 800; font-size: 13px;
+    }
+    .tag {
+      display: inline-block; padding: 4px 11px; border-radius: 20px;
+      background: var(--accent-soft); color: var(--navy-2);
+      border: 1px solid var(--accent-line); font-weight: 700; font-size: 13px;
+    }
+    .yz-date {
+      display: inline-block; padding: 4px 11px; border-radius: 8px;
+      background: #fff5e6; color: #9a5b00; border: 1px solid #f3dcb0;
+      font-weight: 700; font-size: 13.5px; white-space: nowrap;
+    }
+    .heb-date {
+      display: inline-block; padding: 4px 12px; border-radius: 20px;
+      background: linear-gradient(160deg, #fdeef8, #f3e8ff);
+      color: #7a2e7a; border: 1px solid #e9cdec; font-weight: 700; font-size: 14px;
+      white-space: nowrap;
     }
 
+    /* ---------- States ---------- */
+    .state { padding: 60px 30px; text-align: center; color: var(--muted); font-size: 16px; }
     .spinner {
-      width: 38px;
-      height: 38px;
-      border: 4px solid var(--accent-soft);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto 16px;
+      width: 38px; height: 38px; border: 4px solid var(--accent-soft);
+      border-top-color: var(--accent); border-radius: 50%;
+      animation: spin .8s linear infinite; margin: 0 auto 16px;
     }
-
     @keyframes spin { to { transform: rotate(360deg); } }
-
     .error-box {
-      background: #fff4f4;
-      border: 1px solid #f3c9c9;
-      color: #9b2c2c;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: right;
-      max-width: 640px;
-      margin: 0 auto;
-      line-height: 1.6;
+      background: #fff4f4; border: 1px solid #f3c9c9; color: #9b2c2c;
+      padding: 20px; border-radius: 12px; text-align: right;
+      max-width: 640px; margin: 0 auto; line-height: 1.6;
     }
-
+    .section-empty { padding: 34px 24px; text-align: center; color: var(--muted); font-size: 15px; }
     .hidden { display: none; }
 
-    .empty-cell { color: #b6c0cc; }
+    .site-footer { text-align: center; color: var(--muted); font-size: 13px; padding: 26px 20px 40px; }
 
-    .site-footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 13px;
-      padding: 26px 20px 40px;
-    }
-
-    @media (max-width: 600px) {
+    @media (max-width: 720px) {
       .site-header h1 { font-size: 26px; }
       .tab-btn { padding: 11px 16px; font-size: 14px; }
+      table { font-size: 13.5px; }
+      thead th, tbody td { padding: 11px 10px; }
+      .name-cell { white-space: normal; }
     }
   </style>
 </head>
@@ -296,18 +252,12 @@
       <span class="count-badge" id="count">—</span>
     </div>
 
-    <div class="card">
-      <div id="state" class="state">
-        <div class="spinner"></div>
-        טוען נתונים מהגיליון...
-      </div>
-      <div id="table-area" class="table-wrap hidden">
-        <table>
-          <thead><tr id="thead-row"></tr></thead>
-          <tbody id="tbody"></tbody>
-        </table>
-      </div>
+    <div id="state" class="state">
+      <div class="spinner"></div>
+      טוען נתונים מהגיליון...
     </div>
+
+    <div id="content" class="hidden"></div>
   </div>
 
   <div class="site-footer">
@@ -315,165 +265,355 @@
   </div>
 
   <script>
-    // Live published CSV (published-to-web link)
     const CSV_URL = "https://docs.google.com/spreadsheets/d/19bkeReLS0qAOxhm4FaLXMue921QC95xGQ7eIwTu-PK0/export?format=csv&gid=150923884";
 
-    // ---- CSV parser (handles quotes, embedded commas & newlines) ----
+    /* ===== Column map (0-based) ===== */
+    const COL = {
+      family: 1,   // B  שם משפחה
+      manName: 2,  // C  שם גבר
+      womanName: 3,// D  שם אישה
+      address: 4,  // E  כתובת מגורים
+      apt: 5,      // F  מספר דירה
+      manPhone: 6, // G  נייד גבר
+      womanPhone: 7,// H נייד אישה
+      affil: 11,   // L  שיוך
+      aliyahName: 12,// M שם מלא לעלייה לתורה
+      bmParsha: 13,// N  פרשת בר מצווה
+      chazan: 14,  // O  יכול לשמש כחזן
+      reader: 15,  // P  יכול לקרוא בתורה
+      dvar: 16,    // Q  דבר תורה
+      help: 17,    // R  נוכל לסייע לקהילה
+      manBirth: 18,// S  גבר - תאריך לידה עברי
+      womanBirth: 19,// T אישה - תאריך לידה עברי
+      yahrzeit: 20,// U  תאריכים עבריים ליארצייט
+      bmSonAliyah: 21,// V יש לנו בן מעל גיל בר מצווה / שמות עלייה
+      bmSonParsha: 22 // W פרשת בר מצווה של הבן/ים
+    };
+
+    /* ===== CSV parser (quotes, commas, newlines) ===== */
     function parseCSV(text) {
-      const rows = [];
-      let row = [];
-      let field = "";
-      let inQuotes = false;
+      const rows = []; let row = [], field = "", inQuotes = false;
       for (let i = 0; i < text.length; i++) {
         const c = text[i];
         if (inQuotes) {
-          if (c === '"') {
-            if (text[i + 1] === '"') { field += '"'; i++; }
-            else { inQuotes = false; }
-          } else {
-            field += c;
-          }
+          if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else inQuotes = false; }
+          else field += c;
         } else {
-          if (c === '"') {
-            inQuotes = true;
-          } else if (c === ',') {
-            row.push(field); field = "";
-          } else if (c === '\n') {
-            row.push(field); field = "";
-            rows.push(row); row = [];
-          } else if (c === '\r') {
-            // ignore, handled by \n
-          } else {
-            field += c;
-          }
+          if (c === '"') inQuotes = true;
+          else if (c === ',') { row.push(field); field = ""; }
+          else if (c === '\n') { row.push(field); field = ""; rows.push(row); row = []; }
+          else if (c === '\r') { /* skip */ }
+          else field += c;
         }
       }
-      if (field.length > 0 || row.length > 0) {
-        row.push(field);
-        rows.push(row);
-      }
+      if (field.length > 0 || row.length > 0) { row.push(field); rows.push(row); }
       return rows;
     }
 
-    // Convert a column letter (A, B, ... V, W) to a 0-based index
-    function colIndex(letter) {
-      let n = 0;
-      for (const ch of letter.toUpperCase()) {
-        n = n * 26 + (ch.charCodeAt(0) - 64);
-      }
-      return n - 1;
+    let headers = [], dataRows = [], currentTab = "members";
+
+    const $ = id => document.getElementById(id);
+    const get = (row, idx) => (row[idx] || "").toString().trim();
+    function escapeHtml(s) {
+      return (s || "").toString()
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+    function getSearch() { return $("search").value.trim().toLowerCase(); }
+    function matchSearch(parts) {
+      const s = getSearch();
+      if (!s) return true;
+      return parts.filter(Boolean).join(" ").toLowerCase().includes(s);
     }
 
-    // Global parsed data
-    let headers = [];
-    let dataRows = [];
-    let currentTab = "members";
+    /* ===== WhatsApp ===== */
+    const WA_SVG = '<svg class="wa-ico" viewBox="0 0 32 32" aria-hidden="true">' +
+      '<path fill="#25D366" d="M16 .4C7.4.4.5 7.3.5 15.9c0 2.8.7 5.4 2 7.8L.4 31.6l8.1-2.1c2.3 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.4 16 .4z"/>' +
+      '<path fill="#fff" d="M24.3 19.3c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.3-2-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.7-.7-.9-.7h-.8c-.3 0-.7.1-1 .5-.4.4-1.4 1.3-1.4 3.3s1.4 3.8 1.6 4.1c.2.3 2.8 4.3 6.8 6 .9.4 1.7.6 2.3.8 1 .3 1.8.3 2.5.2.8-.1 2.4-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg>';
 
-    // ---- Tab configuration ----
-    // Each tab maps to a set of header-name keywords (Hebrew/English) used to
-    // detect the relevant columns. If nothing matches, we fall back to all columns.
-    const TAB_CONFIG = {
-      members: {
-        keywords: ["שם", "משפחה", "כתובת", "טלפון", "נייד", "מייל", "אימייל",
-                   "דוא", "עיר", "דירה", "name", "phone", "email", "address"]
-      },
-      birthdays: {
-        keywords: ["יום הולדת", "תאריך לידה", "לידה", "הולדת", "birthday",
-                   "תאריך עברי", "גיל", "שם", "משפחה"]
-      },
-      committees: {
-        keywords: ["ועד", "ועדה", "תפקיד", "אחראי", "committee", "role", "שם", "משפחה"]
-      },
-      gabbaim: {
-        // Gabbaim area must always include columns V and W (Bar Mitzvah boys)
-        keywords: ["גבאי", "בר מצווה", "בר מצוה", "עליה", "עלייה", "פרשה",
-                   "תורה", "gabbai", "bar mitzvah", "שם", "משפחה"],
-        forceCols: [colIndex("V"), colIndex("W")]
+    function waLink(raw) {
+      let p = (raw || "").toString().replace(/[^\d+]/g, ""); // strip hyphens, spaces, parens, etc.
+      if (!p) return null;
+      if (p.charAt(0) === '+') p = p.slice(1);
+      if (p.indexOf("972") === 0) { /* already international */ }
+      else if (p.charAt(0) === '0') p = "972" + p.slice(1);
+      else p = "972" + p;
+      return "https://wa.me/" + p;
+    }
+    function phoneCell(raw) {
+      const v = (raw || "").toString().trim();
+      if (!v) return '<span class="empty-cell">—</span>';
+      const link = waLink(v);
+      if (!link) return escapeHtml(v);
+      return '<a class="wa-link" href="' + link + '" target="_blank" rel="noopener" title="פתיחת צ׳אט וואטסאפ">' +
+             WA_SVG + '<span dir="ltr">' + escapeHtml(v) + '</span></a>';
+    }
+    function capCell(raw) {
+      const v = (raw || "").toString().trim();
+      if (/כן/.test(v)) return '<span class="badge-yes">✓ כן</span>';
+      if (/לא/.test(v)) return '<span class="empty-cell">—</span>';
+      return v ? escapeHtml(v) : '<span class="empty-cell">—</span>';
+    }
+    function txt(v) {
+      v = (v || "").toString().trim();
+      return v ? escapeHtml(v) : '<span class="empty-cell">—</span>';
+    }
+
+    /* ===== Hebrew date parsing & sorting (Birthdays) ===== */
+    const GEM = {'א':1,'ב':2,'ג':3,'ד':4,'ה':5,'ו':6,'ז':7,'ח':8,'ט':9,'י':10,
+      'כ':20,'ך':20,'ל':30,'מ':40,'ם':40,'נ':50,'ן':50,'ס':60,'ע':70,'פ':80,'ף':80,
+      'צ':90,'ץ':90,'ק':100,'ר':200,'ש':300,'ת':400};
+    function gematria(tok) {
+      let s = 0;
+      for (const ch of tok) if (GEM[ch]) s += GEM[ch];
+      return s;
+    }
+    // Hebrew months in calendar order (year starts at Tishrei). [name, ...aliases]
+    const HEB_MONTHS = [
+      ["תשרי"], ["חשון", "מרחשון", "מרחשוון", "חשוון"], ["כסלו", "כסליו"],
+      ["טבת"], ["שבט"], ["אדר", "אדר א", "אדר ב", "אדר א׳", "אדר ב׳", "אדר1", "אדר2"],
+      ["ניסן"], ["אייר", "איר"], ["סיון", "סיוון"], ["תמוז"], ["אב", "מנחם אב"], ["אלול"]
+    ];
+    function parseHebDate(str) {
+      const clean = (str || "").toString().replace(/["'׳״]/g, "").trim();
+      if (!clean) return { valid: false };
+      const tokens = clean.split(/\s+/).filter(Boolean);
+      let monthIdx = -1, dayTok = "";
+      for (const t of tokens) {
+        let found = -1;
+        for (let m = 0; m < HEB_MONTHS.length; m++) {
+          if (HEB_MONTHS[m].indexOf(t) !== -1) { found = m; break; }
+        }
+        if (found !== -1 && monthIdx === -1) monthIdx = found;
+        else if (!dayTok) dayTok = t;
       }
+      if (monthIdx === -1) {
+        // try substring month match
+        for (let m = 0; m < HEB_MONTHS.length; m++) {
+          if (HEB_MONTHS[m].some(a => clean.indexOf(a) !== -1)) { monthIdx = m; break; }
+        }
+      }
+      const day = gematria(dayTok || tokens[0] || "");
+      if (monthIdx === -1) return { valid: false, day, monthIdx: 99 };
+      return { valid: true, day: day || 99, monthIdx };
+    }
+
+    /* ===== Section / table builders ===== */
+    function makeCard(opts) {
+      // opts: {icon, title, count, headers:[], rows:[ [cellHTML,...] ], emptyMsg, plainHead}
+      const card = document.createElement("div");
+      card.className = "card";
+
+      if (opts.title) {
+        const head = document.createElement("div");
+        head.className = "section-head";
+        head.innerHTML = '<span class="s-ico">' + opts.icon + '</span>' +
+          '<h2>' + escapeHtml(opts.title) + '</h2>' +
+          (opts.count != null ? '<span class="s-count">' + opts.count + '</span>' : '');
+        card.appendChild(head);
+      }
+
+      if (!opts.rows.length) {
+        const e = document.createElement("div");
+        e.className = "section-empty";
+        e.textContent = opts.emptyMsg || "אין נתונים להצגה.";
+        card.appendChild(e);
+        return card;
+      }
+
+      const table = document.createElement("table");
+      const thead = "<thead><tr>" + opts.headers.map(h => "<th>" + escapeHtml(h) + "</th>").join("") + "</tr></thead>";
+      const tbody = "<tbody>" + opts.rows.map(r => "<tr>" + r.map(c => "<td>" + c + "</td>").join("") + "</tr>").join("") + "</tbody>";
+      table.innerHTML = thead + tbody;
+      card.appendChild(table);
+      return card;
+    }
+
+    function nonEmptyRows() {
+      return dataRows.filter(r => r.some(c => (c || "").toString().trim() !== ""));
+    }
+
+    /* ===== Tab renderers ===== */
+    function renderMembers(content) {
+      const rows = [];
+      nonEmptyRows().forEach(r => {
+        const family = get(r, COL.family);
+        const manName = get(r, COL.manName);
+        const womanName = get(r, COL.womanName);
+        const manPhone = get(r, COL.manPhone);
+        const womanPhone = get(r, COL.womanPhone);
+        const address = get(r, COL.address);
+        const apt = get(r, COL.apt);
+        if (!family && !manName && !womanName) return;
+        if (!matchSearch([family, manName, womanName, manPhone, womanPhone, address, apt])) return;
+        rows.push([
+          '<span class="name-cell">' + txt(family) + '</span>',
+          txt(manName),
+          phoneCell(manPhone),
+          txt(womanName),
+          phoneCell(womanPhone),
+          txt(address),
+          txt(apt)
+        ]);
+      });
+      content.appendChild(makeCard({
+        headers: ["שם משפחה", "שם גבר", "נייד גבר", "שם אישה", "נייד אישה", "כתובת", "דירה"],
+        rows: rows,
+        emptyMsg: "לא נמצאו חברים התואמים לחיפוש."
+      }));
+      $("count").textContent = rows.length + " משפחות";
+    }
+
+    function renderBirthdays(content) {
+      const people = [];
+      nonEmptyRows().forEach(r => {
+        const family = get(r, COL.family);
+        const man = get(r, COL.manName), manB = get(r, COL.manBirth);
+        const woman = get(r, COL.womanName), womanB = get(r, COL.womanBirth);
+        if (man && manB) people.push({ first: man, family, date: manB });
+        if (woman && womanB) people.push({ first: woman, family, date: womanB });
+      });
+      // chronological sort by Hebrew calendar (Tishrei first)
+      people.forEach(p => p._d = parseHebDate(p.date));
+      people.sort((a, b) => {
+        if (a._d.monthIdx !== b._d.monthIdx) return a._d.monthIdx - b._d.monthIdx;
+        return a._d.day - b._d.day;
+      });
+      const rows = [];
+      people.forEach(p => {
+        if (!matchSearch([p.first, p.family, p.date])) return;
+        rows.push([
+          '<span class="name-cell">' + txt(p.first) + '</span>',
+          txt(p.family),
+          '<span class="heb-date">' + escapeHtml(p.date) + '</span>'
+        ]);
+      });
+      content.appendChild(makeCard({
+        headers: ["שם פרטי", "שם משפחה", "תאריך לידה עברי"],
+        rows: rows,
+        emptyMsg: "לא נמצאו ימי הולדת התואמים לחיפוש."
+      }));
+      $("count").textContent = rows.length + " רשומות";
+    }
+
+    function renderCommittees(content) {
+      const rows = [];
+      nonEmptyRows().forEach(r => {
+        const role = get(r, COL.help);
+        if (!role) return; // only rows where committee / role data exists
+        const family = get(r, COL.family);
+        const man = get(r, COL.manName), woman = get(r, COL.womanName);
+        const name = [man, woman].filter(Boolean).join(" ו");
+        if (!matchSearch([family, man, woman, role])) return;
+        rows.push([
+          '<span class="name-cell">' + txt(name) + '</span>',
+          txt(family),
+          '<span class="tag">' + escapeHtml(role) + '</span>'
+        ]);
+      });
+      content.appendChild(makeCard({
+        icon: "📋", title: "ועדות ותפקידים", count: rows.length,
+        headers: ["שם החבר", "שם משפחה", "ועדה / תפקיד"],
+        rows: rows,
+        emptyMsg: "לא נמצאו רשומות ועדות התואמות לחיפוש."
+      }));
+      $("count").textContent = rows.length + " חברי ועדות";
+    }
+
+    function renderGabbaim(content) {
+      const all = nonEmptyRows();
+
+      /* --- Section 1: Aliyot to the Torah --- */
+      const aliyot = [];
+      all.forEach(r => {
+        const aliyahName = get(r, COL.aliyahName);
+        const affil = get(r, COL.affil);
+        if (!aliyahName && !affil) return;
+        const family = get(r, COL.family);
+        if (!matchSearch([family, aliyahName, affil, get(r, COL.bmParsha),
+                          get(r, COL.chazan), get(r, COL.reader), get(r, COL.dvar)])) return;
+        aliyot.push([
+          '<span class="name-cell">' + txt(family) + '</span>',
+          txt(aliyahName),
+          affil ? '<span class="tag">' + escapeHtml(affil) + '</span>' : '<span class="empty-cell">—</span>',
+          capCell(get(r, COL.chazan)),
+          capCell(get(r, COL.reader)),
+          capCell(get(r, COL.dvar))
+        ]);
+      });
+      content.appendChild(makeCard({
+        icon: "📖", title: "עליות לתורה", count: aliyot.length,
+        headers: ["שם משפחה", "שם מלא לעלייה", "שיוך", "חזן", "קריאה בתורה", "דבר תורה"],
+        rows: aliyot,
+        emptyMsg: "אין נתוני עליות התואמים לחיפוש."
+      }));
+
+      /* --- Section 2: Yahrzeit --- */
+      const yahrzeit = [];
+      all.forEach(r => {
+        const yz = get(r, COL.yahrzeit);
+        if (!yz) return;
+        const family = get(r, COL.family);
+        const man = get(r, COL.manName), woman = get(r, COL.womanName);
+        const name = [man, woman].filter(Boolean).join(" / ");
+        if (!matchSearch([family, man, woman, yz])) return;
+        yahrzeit.push([
+          '<span class="name-cell">' + txt(family) + '</span>',
+          txt(name),
+          '<span class="yz-date">🕯️ ' + escapeHtml(yz) + '</span>'
+        ]);
+      });
+      content.appendChild(makeCard({
+        icon: "🕯️", title: "יארצייט", count: yahrzeit.length,
+        headers: ["שם משפחה", "שם", "תאריכים עבריים ליארצייט"],
+        rows: yahrzeit,
+        emptyMsg: "אין תאריכי יארצייט התואמים לחיפוש."
+      }));
+
+      /* --- Section 3: Bar Mitzvah boys (columns V & W) --- */
+      const barmitzvah = [];
+      all.forEach(r => {
+        const aliyah = get(r, COL.bmSonAliyah); // V
+        const parsha = get(r, COL.bmSonParsha); // W
+        if (!aliyah && !parsha) return;
+        const family = get(r, COL.family);
+        if (!matchSearch([family, aliyah, parsha])) return;
+        barmitzvah.push([
+          '<span class="name-cell">' + txt(family) + '</span>',
+          txt(aliyah),
+          parsha ? '<span class="tag">' + escapeHtml(parsha) + '</span>' : '<span class="empty-cell">—</span>'
+        ]);
+      });
+      content.appendChild(makeCard({
+        icon: "🎉", title: "בני מצווה", count: barmitzvah.length,
+        headers: ["שם משפחה", "שמות העלייה לתורה", "פרשת בר מצווה"],
+        rows: barmitzvah,
+        emptyMsg: "אין נתוני בני מצווה התואמים לחיפוש."
+      }));
+
+      $("count").textContent =
+        (aliyot.length + yahrzeit.length + barmitzvah.length) + " רשומות";
+    }
+
+    const RENDERERS = {
+      members: renderMembers,
+      birthdays: renderBirthdays,
+      committees: renderCommittees,
+      gabbaim: renderGabbaim
     };
 
-    function findColumnsForTab(tab) {
-      const cfg = TAB_CONFIG[tab];
-      const matched = [];
-      headers.forEach((h, idx) => {
-        const lh = (h || "").toString().toLowerCase();
-        if (cfg.keywords.some(k => lh.includes(k.toLowerCase()))) {
-          matched.push(idx);
-        }
-      });
-
-      // Always include forced columns (V & W for gabbaim Bar Mitzvah)
-      if (cfg.forceCols) {
-        cfg.forceCols.forEach(ci => {
-          if (ci < headers.length && !matched.includes(ci)) matched.push(ci);
-        });
-      }
-
-      matched.sort((a, b) => a - b);
-
-      // Fallback: if nothing matched, show every column
-      if (matched.length === 0) {
-        return headers.map((_, i) => i);
-      }
-      return matched;
-    }
-
-    function rowIsEmpty(row) {
-      return row.every(c => (c || "").toString().trim() === "");
-    }
-
     function render() {
-      const cols = findColumnsForTab(currentTab);
-      const theadRow = document.getElementById("thead-row");
-      const tbody = document.getElementById("tbody");
-      const search = document.getElementById("search").value.trim().toLowerCase();
-
-      // Header
-      theadRow.innerHTML = "";
-      cols.forEach(ci => {
-        const th = document.createElement("th");
-        let label = (headers[ci] || "").toString().trim();
-        if (!label) label = "עמודה " + (ci + 1);
-        th.textContent = label;
-        theadRow.appendChild(th);
-      });
-
-      // Body
-      tbody.innerHTML = "";
-      let shown = 0;
-      dataRows.forEach(row => {
-        if (rowIsEmpty(row)) return;
-
-        if (search) {
-          const haystack = cols.map(ci => (row[ci] || "")).join(" ").toLowerCase();
-          if (!haystack.includes(search)) return;
-        }
-
-        const tr = document.createElement("tr");
-        cols.forEach(ci => {
-          const td = document.createElement("td");
-          const val = (row[ci] || "").toString().trim();
-          if (val === "") {
-            td.innerHTML = '<span class="empty-cell">—</span>';
-          } else {
-            td.textContent = val;
-          }
-          tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
-        shown++;
-      });
-
-      document.getElementById("count").textContent = shown + " רשומות";
+      const content = $("content");
+      content.innerHTML = "";
+      (RENDERERS[currentTab] || renderMembers)(content);
     }
 
     function showError(msg) {
-      const state = document.getElementById("state");
-      state.classList.remove("hidden");
-      document.getElementById("table-area").classList.add("hidden");
-      state.innerHTML = '<div class="error-box">' +
-        '<strong>שגיאה בטעינת הנתונים</strong><br>' + msg +
-        '<br><br>ודאו שהגיליון פורסם לאינטרנט (קובץ ← שיתוף ← פרסום באינטרנט) וכי הקישור עדיין תקף.' +
+      $("state").classList.remove("hidden");
+      $("content").classList.add("hidden");
+      $("state").innerHTML = '<div class="error-box">' +
+        '<strong>שגיאה בטעינת הנתונים</strong><br>' + escapeHtml(msg) +
+        '<br><br>ודאו שהגיליון פורסם לאינטרנט וכי הקישור עדיין תקף.' +
         '</div>';
     }
 
@@ -484,20 +624,17 @@
         const text = await res.text();
         const rows = parseCSV(text);
         if (rows.length === 0) throw new Error("הגיליון ריק.");
-
         headers = rows[0];
         dataRows = rows.slice(1);
-
-        document.getElementById("state").classList.add("hidden");
-        document.getElementById("table-area").classList.remove("hidden");
+        $("state").classList.add("hidden");
+        $("content").classList.remove("hidden");
         render();
       } catch (err) {
         showError(err.message || String(err));
       }
     }
 
-    // ---- Tab switching ----
-    document.getElementById("tabs").addEventListener("click", (e) => {
+    $("tabs").addEventListener("click", (e) => {
       const btn = e.target.closest(".tab-btn");
       if (!btn) return;
       document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
@@ -506,9 +643,7 @@
       if (headers.length) render();
     });
 
-    document.getElementById("search").addEventListener("input", () => {
-      if (headers.length) render();
-    });
+    $("search").addEventListener("input", () => { if (headers.length) render(); });
 
     loadData();
   </script>
