@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>כרטיסיות עלייה לתורה — קהילת כנפי רוח</title>
+  <link rel="icon" type="image/png" href="https://i.toffu.ai/1ijoy2fq-png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&family=Rubik:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0f2d52;
+      --navy-2: #14396a;
+      --frame: #1b4b88;
+      --gold: #b8923f;
+      --gold-soft: #d8b878;
+      --ink: #16243a;
+      --cut: #bcbcbc;
+      --page-bg: #e7edf5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Heebo", "Rubik", "Segoe UI", "Arial Hebrew", Arial, sans-serif;
+      background: var(--page-bg);
+      color: var(--ink);
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============ Screen top bar (hidden in print) ============ */
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: linear-gradient(160deg, var(--navy-2), var(--navy));
+      color: #fff;
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 26px;
+      box-shadow: 0 8px 28px rgba(15, 45, 82, 0.25);
+    }
+    .topbar .brand { display: flex; align-items: center; gap: 13px; }
+    .topbar .logo {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: #fff; padding: 5px; object-fit: contain;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .topbar .titles h1 { margin: 0; font-size: 19px; font-weight: 800; }
+    .topbar .titles p { margin: 2px 0 0; font-size: 13px; color: #c8d8ef; }
+
+    .topbar .spacer { flex: 1; }
+
+    .topbar .meta {
+      font-size: 13.5px; font-weight: 600; color: #cfe0f7;
+      background: rgba(255,255,255,0.12); padding: 7px 14px; border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .print-btn {
+      font-family: inherit; font-size: 15.5px; font-weight: 800;
+      color: var(--navy); background: linear-gradient(160deg, #ffffff, #eaf2fd);
+      border: none; border-radius: 12px; padding: 12px 22px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 9px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .print-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.28); }
+    .print-btn .ico { font-size: 18px; }
+
+    .hint {
+      max-width: 1000px; margin: 18px auto 4px; padding: 0 20px;
+      color: #5a6675; font-size: 13.5px; text-align: center;
+    }
+
+    .state { text-align: center; padding: 70px 20px; color: #5a6675; font-size: 16px; }
+    .spinner {
+      width: 38px; height: 38px; border: 4px solid #d6e3f6;
+      border-top-color: var(--frame); border-radius: 50%;
+      animation: spin .8s linear infinite; margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error-box {
+      background: #fff4f4; border: 1px solid #f3c9c9; color: #9b2c2c;
+      padding: 20px; border-radius: 12px; max-width: 620px; margin: 0 auto; line-height: 1.6;
+    }
+
+    /* ============ Pages & cards ============ */
+    #sheets { padding: 26px 0 50px; }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto 26px;
+      padding: 12mm;
+      background: #fff;
+      box-shadow: 0 16px 44px rgba(15, 45, 82, 0.18);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 9mm;
+    }
+
+    .card {
+      /* dashed light-gray cut guide */
+      border: 1.5px dashed var(--cut);
+      padding: 4mm;
+      display: flex;
+    }
+
+    .card-inner {
+      flex: 1;
+      position: relative;
+      border: 2px solid var(--frame);
+      border-radius: 6px;
+      /* subtle decorative double frame */
+      box-shadow: inset 0 0 0 1.5px #fff, inset 0 0 0 3.5px var(--gold-soft);
+      padding: 9mm 7mm 8mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      background:
+        radial-gradient(120% 80% at 50% 0%, rgba(184,146,63,0.06), transparent 60%),
+        #ffffff;
+      overflow: hidden;
+    }
+
+    /* corner flourishes */
+    .card-inner::before,
+    .card-inner::after {
+      content: "";
+      position: absolute;
+      width: 14px; height: 14px;
+      border: 2px solid var(--gold);
+      opacity: 0.7;
+    }
+    .card-inner::before { top: 5mm; right: 5mm; border-bottom: none; border-left: none; }
+    .card-inner::after  { bottom: 5mm; left: 5mm; border-top: none; border-right: none; }
+
+    .crest { font-size: 20px; color: var(--gold); line-height: 1; }
+
+    .family {
+      font-family: "Rubik", "Heebo", sans-serif;
+      font-size: 17px; font-weight: 700; color: var(--navy-2);
+      letter-spacing: 0.3px;
+    }
+
+    .divider {
+      width: 56%; height: 0;
+      border-top: 1.5px solid var(--gold-soft);
+      position: relative; margin: 2px 0;
+    }
+    .divider::after {
+      content: "✦"; color: var(--gold); font-size: 12px;
+      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      background: #fff; padding: 0 6px;
+    }
+
+    .aliyah-label { font-size: 12.5px; color: #7c8290; font-weight: 600; letter-spacing: 1px; }
+
+    .aliyah-name {
+      font-family: "Heebo", sans-serif;
+      font-size: 38px; font-weight: 900; color: var(--navy);
+      line-height: 1.12; letter-spacing: 0.2px;
+      overflow-wrap: anywhere; word-break: break-word;
+      padding: 0 2mm;
+    }
+    .aliyah-name.long { font-size: 30px; }
+    .aliyah-name.xlong { font-size: 24px; }
+
+    .badge-son {
+      display: inline-block; margin-top: 4px;
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      border: 1px solid var(--gold-soft); border-radius: 20px; padding: 3px 12px;
+    }
+
+    .write-slot {
+      width: 100%;
+      font-size: 15px; font-weight: 700; color: var(--navy-2);
+      display: flex; align-items: baseline; gap: 8px; justify-content: center;
+    }
+    .write-slot .line {
+      flex: 1; max-width: 62%;
+      border-bottom: 1.6px dotted #9aa6b4;
+      height: 18px;
+    }
+
+    @media (max-width: 800px) {
+      .page {
+        width: 100%; height: auto;
+        grid-template-columns: 1fr; grid-template-rows: none;
+        gap: 14px; padding: 14px;
+      }
+      .card { min-height: 220px; }
+      .aliyah-name { font-size: 32px; }
+      .topbar { flex-wrap: wrap; }
+    }
+
+    /* ============ PRINT ============ */
+    @media print {
+      @page { size: A4; margin: 0; }
+      html, body { background: #fff; }
+      .topbar, .hint, .state { display: none !important; }
+      #sheets { padding: 0; }
+      .page {
+        margin: 0; box-shadow: none;
+        width: 210mm; height: 297mm;
+        page-break-after: always;
+        break-after: page;
+      }
+      .page:last-child { page-break-after: auto; break-after: auto; }
+      .card { page-break-inside: avoid; break-inside: avoid; }
+      .card-inner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">
+      <img class="logo" src="https://i.toffu.ai/1ijoy2fq-png" alt="לוגו" />
+      <div class="titles">
+        <h1>כרטיסיות עלייה לתורה</h1>
+        <p>קהילת כנפי רוח · מערכת הדפסה לגבאים</p>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <span class="meta" id="meta">—</span>
+    <button class="print-btn" id="printBtn"><span class="ico">🖨️</span>הדפס כרטיסיות</button>
+  </div>
+
+  <p class="hint">
+    4 כרטיסיות בכל דף A4 (2×2). מומלץ להדפיס ללא שוליים / "גודל מקורי". הקו המקווקו מסמן את קו החיתוך.
+  </p>
+
+  <div id="state" class="state">
+    <div class="spinner"></div>
+    טוען נתונים מהגיליון...
+  </div>
+
+  <div id="sheets"></div>
+
+  <script>
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/19bkeReLS0qAOxhm4FaLXMue921QC95xGQ7eIwTu-PK0/export?format=csv&gid=150923884";
+    const CARDS_PER_PAGE = 4;
+
+    /* ---- CSV parser ---- */
+    function parseCSV(text) {
+      const rows = []; let row = [], field = "", inQuotes = false;
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        if (inQuotes) {
+          if (c === '"') { if (text[i + 1] === '"') { field += '"'; i++; } else inQuotes = false; }
+          else field += c;
+        } else {
+          if (c === '"') inQuotes = true;
+          else if (c === ',') { row.push(field); field = ""; }
+          else if (c === '\n') { row.push(field); field = ""; rows.push(row); row = []; }
+          else if (c === '\r') { /* skip */ }
+          else field += c;
+        }
+      }
+      if (field.length > 0 || row.length > 0) { row.push(field); rows.push(row); }
+      return rows;
+    }
+
+    function escapeHtml(s) {
+      return (s || "").toString()
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+    const hasHebrew = s => /[א-ת]/.test(s || "");
+
+    /* ---- Column matching (keyword based, with letter fallback) ---- */
+    function colIndex(letter) {
+      let n = 0;
+      for (const ch of letter.toUpperCase()) n = n * 26 + (ch.charCodeAt(0) - 64);
+      return n - 1;
+    }
+    function findCol(headers, keywords, fallbackLetter) {
+      for (let i = 0; i < headers.length; i++) {
+        const h = (headers[i] || "").toString();
+        if (keywords.some(k => h.indexOf(k) !== -1)) return i;
+      }
+      const fb = colIndex(fallbackLetter);
+      return fb < headers.length ? fb : -1;
+    }
+
+    /* ---- Card sizing helper based on name length ---- */
+    function sizeClass(name) {
+      const len = name.length;
+      if (len > 22) return "xlong";
+      if (len > 14) return "long";
+      return "";
+    }
+
+    function buildCard(family, name, isSon) {
+      const fam = (family || "").trim();
+      const famLine = fam ? "משפחת " + escapeHtml(fam) : "&nbsp;";
+      return '' +
+        '<div class="card"><div class="card-inner">' +
+          '<div class="crest">✡</div>' +
+          '<div class="family">' + famLine + '</div>' +
+          '<div class="divider"></div>' +
+          '<div>' +
+            '<div class="aliyah-label">לעלייה לתורה</div>' +
+            '<div class="aliyah-name ' + sizeClass(name) + '">' + escapeHtml(name) + '</div>' +
+            (isSon ? '<div class="badge-son">בר מצווה</div>' : '') +
+          '</div>' +
+          '<div class="write-slot"><span>עלייה:</span><span class="line"></span></div>' +
+        '</div></div>';
+    }
+
+    function render(cards) {
+      const sheets = document.getElementById("sheets");
+      sheets.innerHTML = "";
+      if (!cards.length) {
+        document.getElementById("state").innerHTML =
+          '<div class="error-box">לא נמצאו שמות לעלייה לתורה בגיליון.</div>';
+        document.getElementById("state").style.display = "";
+        document.getElementById("meta").textContent = "0 כרטיסיות";
+        return;
+      }
+      let html = "";
+      for (let i = 0; i < cards.length; i += CARDS_PER_PAGE) {
+        const slice = cards.slice(i, i + CARDS_PER_PAGE);
+        html += '<div class="page">' +
+          slice.map(c => buildCard(c.family, c.name, c.isSon)).join("") +
+          '</div>';
+      }
+      sheets.innerHTML = html;
+
+      const pages = Math.ceil(cards.length / CARDS_PER_PAGE);
+      document.getElementById("meta").textContent =
+        cards.length + " כרטיסיות · " + pages + " דפים";
+    }
+
+    async function load() {
+      try {
+        const res = await fetch(CSV_URL);
+        if (!res.ok) throw new Error("HTTP " + res.status + " " + res.statusText);
+        const text = await res.text();
+        const rows = parseCSV(text);
+        if (!rows.length) throw new Error("הגיליון ריק.");
+
+        const headers = rows[0];
+        const data = rows.slice(1);
+
+        const famCol = findCol(headers, ["שם משפחה"], "B");
+        const mainCol = findCol(headers, ["שם מלא לעלייה"], "M");
+        const sonsCol = findCol(headers, ["בן מעל גיל בר מצווה", "שמות העלייה לתורה", "שם/שמות העלייה"], "V");
+
+        const cards = [];
+        data.forEach(r => {
+          const family = (r[famCol] || "").toString().trim();
+
+          // Main aliyah (Column M) -> one card
+          const main = (r[mainCol] || "").toString().trim();
+          if (main && hasHebrew(main)) {
+            cards.push({ family, name: main, isSon: false });
+          }
+
+          // Sons aliyah (Column V) -> split by commas, one card each
+          const sonsRaw = (r[sonsCol] || "").toString().trim();
+          if (sonsRaw && hasHebrew(sonsRaw)) {
+            sonsRaw.split(/[,،]/).forEach(piece => {
+              const son = piece.trim();
+              if (son && hasHebrew(son)) {
+                cards.push({ family, name: son, isSon: true });
+              }
+            });
+          }
+        });
+
+        document.getElementById("state").style.display = "none";
+        render(cards);
+      } catch (err) {
+        document.getElementById("state").innerHTML =
+          '<div class="error-box"><strong>שגיאה בטעינת הנתונים</strong><br>' +
+          escapeHtml(err.message || String(err)) +
+          '<br><br>ודאו שהגיליון פורסם לאינטרנט וכי הקישור תקף.</div>';
+      }
+    }
+
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
+
+    load();
+  </script>
+</body>
+</html>
