@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>קהילת כנפי רוח — מאגר חברי הקהילה</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Deep corporate navy palette */
+      --navy: #0f2d52;
+      --navy-2: #14396a;
+      --navy-3: #1b4b88;
+      --accent: #2f80ed;
+      --accent-soft: #eaf2fd;
+      --accent-line: #cfe0f7;
+
+      --page-bg: #eef2f8;
+      --card: #ffffff;
+      --text: #1b2733;
+      --muted: #74808d;
+      --zebra: #f6f9fd;
+      --border: #e6ecf4;
+
+      --shadow-sm: 0 1px 3px rgba(15, 45, 82, 0.06);
+      --shadow-md: 0 8px 28px rgba(15, 45, 82, 0.10);
+      --shadow-lg: 0 18px 50px rgba(15, 45, 82, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: "Heebo", "Segoe UI", "Arial Hebrew", Arial, sans-serif;
+      background: var(--page-bg);
+      color: var(--text);
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------- Corporate header ---------- */
+    .site-header {
+      background:
+        radial-gradient(1200px 320px at 50% -120px, rgba(47, 128, 237, 0.35), transparent 70%),
+        linear-gradient(160deg, var(--navy-3) 0%, var(--navy-2) 45%, var(--navy) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px 54px;
+      position: relative;
+      box-shadow: var(--shadow-md);
+    }
+
+    .logo-badge {
+      width: 104px;
+      height: 104px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+      padding: 8px;
+    }
+
+    .logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .site-header h1 {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .site-header .subtitle {
+      margin: 8px 0 0;
+      font-size: 17px;
+      font-weight: 500;
+      color: #c8d8ef;
+    }
+
+    /* ---------- Layout ---------- */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 22px 60px;
+    }
+
+    /* Tabs bar floats up over the header edge */
+    .tabs {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: -28px auto 26px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tab-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--navy-2);
+      padding: 13px 24px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 15.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, color 0.16s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tab-btn .ico { font-size: 18px; line-height: 1; }
+
+    .tab-btn:hover {
+      background: var(--accent-soft);
+      color: var(--navy);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(160deg, var(--navy-3), var(--navy));
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 12px 26px rgba(15, 45, 82, 0.30);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- Toolbar ---------- */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 220px;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 15px;
+      background: var(--card);
+      color: var(--text);
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .search-box:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+
+    .count-badge {
+      background: var(--accent-soft);
+      color: var(--navy-2);
+      padding: 9px 16px;
+      border-radius: 30px;
+      font-size: 13.5px;
+      font-weight: 700;
+      border: 1px solid var(--accent-line);
+      white-space: nowrap;
+    }
+
+    /* ---------- Card / table ---------- */
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+    }
+
+    thead th {
+      background: linear-gradient(160deg, var(--navy-3), var(--navy));
+      color: #fff;
+      text-align: right;
+      padding: 16px 18px;
+      position: sticky;
+      top: 0;
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    tbody td {
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      color: var(--text);
+    }
+
+    tbody tr:nth-child(even) { background: var(--zebra); }
+
+    tbody tr:hover { background: var(--accent-soft); }
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    .state {
+      padding: 60px 30px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .spinner {
+      width: 38px;
+      height: 38px;
+      border: 4px solid var(--accent-soft);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-box {
+      background: #fff4f4;
+      border: 1px solid #f3c9c9;
+      color: #9b2c2c;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: right;
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .hidden { display: none; }
+
+    .empty-cell { color: #b6c0cc; }
+
+    .site-footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 26px 20px 40px;
+    }
+
+    @media (max-width: 600px) {
+      .site-header h1 { font-size: 26px; }
+      .tab-btn { padding: 11px 16px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo-badge">
+      <img src="https://i.toffu.ai/1ijoy2fq-png" alt="לוגו קהילת כנפי רוח" />
+    </div>
+    <h1>קהילת כנפי רוח</h1>
+    <p class="subtitle">מאגר חברי הקהילה</p>
+  </header>
+
+  <div class="container">
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="members"><span class="ico">👥</span>חברי קהילה</button>
+      <button class="tab-btn" data-tab="birthdays"><span class="ico">🎂</span>ימי הולדת</button>
+      <button class="tab-btn" data-tab="committees"><span class="ico">📋</span>ועדות</button>
+      <button class="tab-btn" data-tab="gabbaim"><span class="ico">🔑</span>אזור גבאים</button>
+    </div>
+
+    <div class="toolbar">
+      <input type="text" id="search" class="search-box" placeholder="🔍  חיפוש חבר, משפחה, טלפון..." />
+      <span class="count-badge" id="count">—</span>
+    </div>
+
+    <div class="card">
+      <div id="state" class="state">
+        <div class="spinner"></div>
+        טוען נתונים מהגיליון...
+      </div>
+      <div id="table-area" class="table-wrap hidden">
+        <table>
+          <thead><tr id="thead-row"></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer">
+    נתונים נטענים ישירות מגיליון Google · קהילת כנפי רוח
+  </div>
+
+  <script>
+    // Live published CSV (published-to-web link)
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/19bkeReLS0qAOxhm4FaLXMue921QC95xGQ7eIwTu-PK0/pub?output=csv&gid=150923884";
+
+    // ---- CSV parser (handles quotes, embedded commas & newlines) ----
+    function parseCSV(text) {
+      const rows = [];
+      let row = [];
+      let field = "";
+      let inQuotes = false;
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        if (inQuotes) {
+          if (c === '"') {
+            if (text[i + 1] === '"') { field += '"'; i++; }
+            else { inQuotes = false; }
+          } else {
+            field += c;
+          }
+        } else {
+          if (c === '"') {
+            inQuotes = true;
+          } else if (c === ',') {
+            row.push(field); field = "";
+          } else if (c === '\n') {
+            row.push(field); field = "";
+            rows.push(row); row = [];
+          } else if (c === '\r') {
+            // ignore, handled by \n
+          } else {
+            field += c;
+          }
+        }
+      }
+      if (field.length > 0 || row.length > 0) {
+        row.push(field);
+        rows.push(row);
+      }
+      return rows;
+    }
+
+    // Convert a column letter (A, B, ... V, W) to a 0-based index
+    function colIndex(letter) {
+      let n = 0;
+      for (const ch of letter.toUpperCase()) {
+        n = n * 26 + (ch.charCodeAt(0) - 64);
+      }
+      return n - 1;
+    }
+
+    // Global parsed data
+    let headers = [];
+    let dataRows = [];
+    let currentTab = "members";
+
+    // ---- Tab configuration ----
+    // Each tab maps to a set of header-name keywords (Hebrew/English) used to
+    // detect the relevant columns. If nothing matches, we fall back to all columns.
+    const TAB_CONFIG = {
+      members: {
+        keywords: ["שם", "משפחה", "כתובת", "טלפון", "נייד", "מייל", "אימייל",
+                   "דוא", "עיר", "דירה", "name", "phone", "email", "address"]
+      },
+      birthdays: {
+        keywords: ["יום הולדת", "תאריך לידה", "לידה", "הולדת", "birthday",
+                   "תאריך עברי", "גיל", "שם", "משפחה"]
+      },
+      committees: {
+        keywords: ["ועד", "ועדה", "תפקיד", "אחראי", "committee", "role", "שם", "משפחה"]
+      },
+      gabbaim: {
+        // Gabbaim area must always include columns V and W (Bar Mitzvah boys)
+        keywords: ["גבאי", "בר מצווה", "בר מצוה", "עליה", "עלייה", "פרשה",
+                   "תורה", "gabbai", "bar mitzvah", "שם", "משפחה"],
+        forceCols: [colIndex("V"), colIndex("W")]
+      }
+    };
+
+    function findColumnsForTab(tab) {
+      const cfg = TAB_CONFIG[tab];
+      const matched = [];
+      headers.forEach((h, idx) => {
+        const lh = (h || "").toString().toLowerCase();
+        if (cfg.keywords.some(k => lh.includes(k.toLowerCase()))) {
+          matched.push(idx);
+        }
+      });
+
+      // Always include forced columns (V & W for gabbaim Bar Mitzvah)
+      if (cfg.forceCols) {
+        cfg.forceCols.forEach(ci => {
+          if (ci < headers.length && !matched.includes(ci)) matched.push(ci);
+        });
+      }
+
+      matched.sort((a, b) => a - b);
+
+      // Fallback: if nothing matched, show every column
+      if (matched.length === 0) {
+        return headers.map((_, i) => i);
+      }
+      return matched;
+    }
+
+    function rowIsEmpty(row) {
+      return row.every(c => (c || "").toString().trim() === "");
+    }
+
+    function render() {
+      const cols = findColumnsForTab(currentTab);
+      const theadRow = document.getElementById("thead-row");
+      const tbody = document.getElementById("tbody");
+      const search = document.getElementById("search").value.trim().toLowerCase();
+
+      // Header
+      theadRow.innerHTML = "";
+      cols.forEach(ci => {
+        const th = document.createElement("th");
+        let label = (headers[ci] || "").toString().trim();
+        if (!label) label = "עמודה " + (ci + 1);
+        th.textContent = label;
+        theadRow.appendChild(th);
+      });
+
+      // Body
+      tbody.innerHTML = "";
+      let shown = 0;
+      dataRows.forEach(row => {
+        if (rowIsEmpty(row)) return;
+
+        if (search) {
+          const haystack = cols.map(ci => (row[ci] || "")).join(" ").toLowerCase();
+          if (!haystack.includes(search)) return;
+        }
+
+        const tr = document.createElement("tr");
+        cols.forEach(ci => {
+          const td = document.createElement("td");
+          const val = (row[ci] || "").toString().trim();
+          if (val === "") {
+            td.innerHTML = '<span class="empty-cell">—</span>';
+          } else {
+            td.textContent = val;
+          }
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+        shown++;
+      });
+
+      document.getElementById("count").textContent = shown + " רשומות";
+    }
+
+    function showError(msg) {
+      const state = document.getElementById("state");
+      state.classList.remove("hidden");
+      document.getElementById("table-area").classList.add("hidden");
+      state.innerHTML = '<div class="error-box">' +
+        '<strong>שגיאה בטעינת הנתונים</strong><br>' + msg +
+        '<br><br>ודאו שהגיליון פורסם לאינטרנט (קובץ ← שיתוף ← פרסום באינטרנט) וכי הקישור עדיין תקף.' +
+        '</div>';
+    }
+
+    async function loadData() {
+      try {
+        const res = await fetch(CSV_URL);
+        if (!res.ok) throw new Error("HTTP " + res.status + " " + res.statusText);
+        const text = await res.text();
+        const rows = parseCSV(text);
+        if (rows.length === 0) throw new Error("הגיליון ריק.");
+
+        headers = rows[0];
+        dataRows = rows.slice(1);
+
+        document.getElementById("state").classList.add("hidden");
+        document.getElementById("table-area").classList.remove("hidden");
+        render();
+      } catch (err) {
+        showError(err.message || String(err));
+      }
+    }
+
+    // ---- Tab switching ----
+    document.getElementById("tabs").addEventListener("click", (e) => {
+      const btn = e.target.closest(".tab-btn");
+      if (!btn) return;
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentTab = btn.dataset.tab;
+      if (headers.length) render();
+    });
+
+    document.getElementById("search").addEventListener("input", () => {
+      if (headers.length) render();
+    });
+
+    loadData();
+  </script>
+</body>
+</html>
