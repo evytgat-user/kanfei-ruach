@@ -96,8 +96,10 @@
       background: #fff;
       box-shadow: 0 16px 44px rgba(15, 45, 82, 0.18);
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 88.5mm 88.5mm;
+      grid-template-rows: 132mm 132mm;
+      align-content: start;
+      justify-content: start;
       gap: 9mm;
     }
 
@@ -139,7 +141,11 @@
     .card-inner::before { top: 5mm; right: 5mm; border-bottom: none; border-left: none; }
     .card-inner::after  { bottom: 5mm; left: 5mm; border-top: none; border-right: none; }
 
-    .crest { font-size: 20px; color: var(--gold); line-height: 1; }
+    .crest-logo {
+      width: 13mm; height: 13mm;
+      object-fit: contain;
+      display: block;
+    }
 
     .family {
       font-family: "Rubik", "Heebo", sans-serif;
@@ -300,15 +306,14 @@
       const famLine = fam ? "משפחת " + escapeHtml(fam) : "&nbsp;";
       return '' +
         '<div class="card"><div class="card-inner">' +
-          '<div class="crest">✡</div>' +
+          '<img class="crest-logo" src="https://i.toffu.ai/1ijoy2fq-png" alt="כנפי רוח" />' +
           '<div class="family">' + famLine + '</div>' +
           '<div class="divider"></div>' +
           '<div>' +
             '<div class="aliyah-label">לעלייה לתורה</div>' +
             '<div class="aliyah-name ' + sizeClass(name) + '">' + escapeHtml(name) + '</div>' +
-            (isSon ? '<div class="badge-son">בר מצווה</div>' : '') +
+            (isSon ? '<div class="badge-son">ילד מעל גיל בר מצווה</div>' : '') +
           '</div>' +
-          '<div class="write-slot"><span>עלייה:</span><span class="line"></span></div>' +
         '</div></div>';
     }
 
