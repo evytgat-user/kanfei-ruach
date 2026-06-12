@@ -301,12 +301,12 @@
       return "";
     }
 
-    function buildCard(family, name, isSon) {
+    function buildCard(family, name, isSon, affil) {
       const fam = (family || "").trim();
+      const aff = (affil || "").trim();
       const first = (name || "").trim().split(/\s+/)[0] || "";
-      const famLine = (first || fam)
-        ? (escapeHtml(first) + (fam ? " " + escapeHtml(fam) : "")).trim()
-        : "&nbsp;";
+      const parts = [aff, first, fam].filter(Boolean).map(escapeHtml);
+      const famLine = parts.length ? parts.join(" ") : "&nbsp;";
       return '' +
         '<div class="card"><div class="card-inner">' +
           '<img class="crest-logo" src="https://i.toffu.ai/1ijoy2fq-png" alt="כנפי רוח" />' +
@@ -334,7 +334,7 @@
       for (let i = 0; i < cards.length; i += CARDS_PER_PAGE) {
         const slice = cards.slice(i, i + CARDS_PER_PAGE);
         html += '<div class="page">' +
-          slice.map(c => buildCard(c.family, c.name, c.isSon)).join("") +
+          slice.map(c => buildCard(c.family, c.name, c.isSon, c.affil)).join("") +
           '</div>';
       }
       sheets.innerHTML = html;
@@ -357,16 +357,18 @@
 
         const famCol = findCol(headers, ["שם משפחה"], "B");
         const mainCol = findCol(headers, ["שם מלא לעלייה"], "M");
+        const affilCol = findCol(headers, ["שיוך"], "L");
         const sonsCol = findCol(headers, ["בן מעל גיל בר מצווה", "שמות העלייה לתורה", "שם/שמות העלייה"], "V");
 
         const cards = [];
         data.forEach(r => {
           const family = (r[famCol] || "").toString().trim();
+          const affil = (r[affilCol] || "").toString().trim();
 
           // Main aliyah (Column M) -> one card
           const main = (r[mainCol] || "").toString().trim();
           if (main && hasHebrew(main)) {
-            cards.push({ family, name: main, isSon: false });
+            cards.push({ family, name: main, isSon: false, affil });
           }
 
           // Sons aliyah (Column V) -> split by commas, one card each
@@ -375,7 +377,7 @@
             sonsRaw.split(/[,،]/).forEach(piece => {
               const son = piece.trim();
               if (son && hasHebrew(son)) {
-                cards.push({ family, name: son, isSon: true });
+                cards.push({ family, name: son, isSon: true, affil });
               }
             });
           }
