@@ -151,6 +151,13 @@
       font-family: "Rubik", "Heebo", sans-serif;
       font-size: 17px; font-weight: 700; color: var(--navy-2);
       letter-spacing: 0.3px;
+      text-align: center;
+    }
+    .affil-line {
+      display: block;
+      font-size: 0.9em; font-weight: 600;
+      color: var(--gold); letter-spacing: 1px;
+      margin-bottom: 2px;
     }
 
     .divider {
@@ -305,8 +312,10 @@
       const fam = (family || "").trim();
       const aff = (affil || "").trim();
       const first = (name || "").trim().split(/\s+/)[0] || "";
-      const parts = [aff, first, fam].filter(Boolean).map(escapeHtml);
-      const famLine = parts.length ? parts.join(" ") : "&nbsp;";
+      const nameParts = [first, fam].filter(Boolean).map(escapeHtml);
+      const nameLine = nameParts.length ? nameParts.join(" ") : "&nbsp;";
+      const affLine = aff ? '<span class="affil-line">' + escapeHtml(aff) + '</span>' : "";
+      const famLine = affLine + nameLine;
       return '' +
         '<div class="card"><div class="card-inner">' +
           '<img class="crest-logo" src="https://i.toffu.ai/1ijoy2fq-png" alt="כנפי רוח" />' +
